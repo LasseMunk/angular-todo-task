@@ -1,0 +1,26 @@
+<app-header />
+<main>
+  <ul id="users">
+    @for (user of users; track user.id) {
+    <li>
+      <app-user
+        [user]="user"
+        [selected]="
+          selectedUser() !== undefined && user.id === selectedUser()!.id
+        "
+        (select)="onSelectUser($event)"
+      />
+    </li>
+    }
+  </ul>
+  @if (selectedUser() !== undefined) {
+  <app-user-tasks [user]="selectedUser()!" [tasks]="tasks()" />
+  <app-add-user-task
+    [user]="selectedUser()!"
+    (submitTask)="onAddUserTask($event)"
+  />
+  } @else {
+  <p>select a user to see their tasks</p>
+  }
+</main>
+<router-outlet />

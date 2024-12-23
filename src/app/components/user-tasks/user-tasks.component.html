@@ -1,0 +1,13 @@
+<section id="tasks">
+  <header>
+    <h3>{{ user.name }}'s tasks</h3>
+    <menu>
+      <button>Add task</button>
+    </menu>
+  </header>
+  <div id="tasks-container">
+    @for(task of selectedUserTasks; track task.id) {
+    <app-user-task [task]="task" (completeTask)="onCompleteTask($event)"/>
+    }
+  </div>
+</section>
